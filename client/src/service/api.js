@@ -88,9 +88,10 @@ for (const [key, value] of Object.entries(SERVICE_URLS)) {
       url: value.url,
       data: value.method === "DELETE" ? {} : body,
       responseType: value.responseType,
+      withCredentials: "include",
       headers: {
         authorization: getAccessToken(),
-        Accept: "application/json, form-data",
+        Accept: "application/json, multipart/form-data",
         "Content-Type": "application/json",
       },
 

@@ -27,4 +27,11 @@ export const API_NOTIFICATION_MESSAGES = {
 export const SERVICE_URLS = {
   userSignup: { url: "/auth/signup", method: "POST" },
   userSignin: { url: "/auth/signin", method: "POST" },
+  forgotPassword: { url: "/auth/forgotPassword", method: "POST" },
+  resetPassword: { url: "/auth/resetPassword", method: "POST" },
+  verifyAuthentication: { url: "/auth/verify", method: "GET" },
+  userLogout: { url: "/auth/logout", method: "GET" },
+  getUserById: { url: "/user/details", method: "GET", query: true },
+  updateProfile: { url: "/user/update", method: "PUT", query: true },
+  uploadFile: { url: "/file/upload", method: "POST" },
 };

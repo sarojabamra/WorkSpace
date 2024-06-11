@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import "../signup/Signup.css";
-import { FaUserCircle } from "react-icons/fa";
-import { MdAttachEmail } from "react-icons/md";
-import { FaUserTie } from "react-icons/fa";
 import { FaPen } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { API } from "../../service/api";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const signinInitialValues = {
   username: "",
   password: "",
 };
 
-const Signin = () => {
+const Signin = ({ setIsAuthenticated, onSignin }) => {
   const [signin, setSignin] = useState(signinInitialValues);
   const navigate = useNavigate();
+
+  axios.defaults.withCredentials = true;
 
   const onInputChange = (e) => {
     setSignin({ ...signin, [e.target.name]: e.target.value });
@@ -23,16 +23,21 @@ const Signin = () => {
 
   const signinUser = async (e) => {
     e.preventDefault();
+
     console.log("Request reached the signup route.");
 
     let response = await API.userSignin(signin);
     if (response.isSuccess) {
+      onSignin(response.data.user);
+      console.log(response.data.user);
+      setIsAuthenticated(true);
       setSignin(signinInitialValues);
       navigate("/");
     } else {
       console.log("error");
     }
   };
+
   return (
     <div className="signup-container">
       <div>
@@ -72,7 +77,10 @@ const Signin = () => {
               Sign in
             </button>
             <p className="forgot">
-              Forgot Password? <span>Click here.</span>
+              Forgot Password?{" "}
+              <Link to="/forgotPassword">
+                <span>Click here.</span>
+              </Link>
             </p>
           </form>
         </div>

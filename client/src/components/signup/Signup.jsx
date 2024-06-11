@@ -47,7 +47,7 @@ const Signup = () => {
               <h3 className="inactive">Sign In</h3>
             </Link>
           </div>
-          <p>
+          <p className="prompt">
             Create an account to join your team and start collaborating
             efficiently. Please enter your details below.
           </p>

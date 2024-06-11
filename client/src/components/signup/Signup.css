@@ -27,6 +27,7 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
+  justify-content: center;
 }
 
 .input-container {
@@ -65,7 +66,6 @@ a {
   background-color: transparent;
   border-radius: 2px;
   width: 100%;
-  outline-color: #101223;
   outline: none;
 }
 
@@ -96,4 +96,26 @@ a {
 
 .inactive {
   background-color: #b3b5bd !important;
+}
+
+.prompt {
+  font-size: 14px !important;
+}
+
+.error {
+  padding: 0px;
+  width: 90%;
+  margin-top: 15px !important;
+  margin-bottom: 0 !important;
+  padding: 0 !important;
+
+  text-align: center;
+}
+
+.message-container {
+  width: 100%;
+  display: flex;
+  margin: 0 !important;
+  padding: 0 !important;
+  justify-content: center;
 }
