@@ -11,7 +11,7 @@ import "./UpdateTeam.css";
 const UpdateTeamModal = ({
   visible,
   onClose,
-
+  fecthMessages,
   fetchAgain,
   setFetchAgain,
 }) => {
@@ -97,6 +97,7 @@ const UpdateTeamModal = ({
       if (response.isSuccess) {
         setSelectedChat(response.data);
         setFetchAgain(!fetchAgain);
+        fecthMessages();
         setError("");
       }
     } catch (error) {
@@ -148,8 +149,7 @@ const UpdateTeamModal = ({
               <IoClose className="close-icon" onClick={closeModal} />
             </div>
             <div className="create-title">
-              <RiTeamFill className="team-icon" />
-              <h2>Update Team details</h2>
+              <h2>Update Team Details</h2>
             </div>
             <p className="email">
               Update your team details and manage members using the options
@@ -157,7 +157,7 @@ const UpdateTeamModal = ({
             </p>
 
             <div className="form">
-              <div className="input-container">
+              <div className="input-container-rename">
                 <FaPen />
 
                 <input
@@ -168,7 +168,7 @@ const UpdateTeamModal = ({
                   required
                 />
                 <button className="rename-btn" onClick={() => renameTeam()}>
-                  Rename
+                  <p>Rename</p>
                 </button>
               </div>
 

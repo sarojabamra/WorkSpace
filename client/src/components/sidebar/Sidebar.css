@@ -1,0 +1,89 @@
+.sidebar {
+  height: 100vh;
+  position: fixed;
+  width: 60px;
+  background-color: #101223;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px 20px;
+  box-sizing: border-box;
+  z-index: 101;
+  justify-content: space-between;
+}
+
+.main-icon {
+  background-color: #404252;
+  border-radius: 50% !important;
+  padding: 10px !important;
+}
+
+.contacts-icon {
+  color: #fff;
+  font-size: 22px;
+  margin-top: -15px;
+}
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.chat-icon {
+  color: #fff;
+  font-size: 22px;
+}
+
+.conference-icon {
+  color: #fff;
+  font-size: 22px;
+}
+
+.task-icon {
+  color: #fff;
+  font-size: 22px;
+}
+
+.users-icon {
+  color: #fff;
+  font-size: 22px;
+}
+
+.notes-icon {
+  color: #fff;
+  font-size: 22px;
+}
+
+.icon {
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.icon:hover {
+  background-color: #404252;
+}
+
+.hr {
+  margin-top: 5px;
+  border-bottom: 1px solid #777986;
+  width: 80%;
+}
+.profileimgdiv {
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.profileimgdiv img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}

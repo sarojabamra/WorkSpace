@@ -56,10 +56,23 @@ export const signinUser = async (request, response) => {
       return response.status(400).json({ message: "Password is incorrect" });
     }
 
-    const token = jwt.sign({ username: user.username }, process.env.KEY, {
-      expiresIn: "6h",
+    const token = jwt.sign(
+      {
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+        name: user.name,
+        profession: user.profession,
+      },
+      process.env.KEY,
+      {
+        expiresIn: "6h",
+      }
+    );
+    response.cookie("token", token, {
+      httpOnly: true,
+      maxAge: 6 * 60 * 60 * 1000,
     });
-    response.cookie("token", token, { httpOnly: true, maxAge: 360000 });
 
     return response
       .status(200)
@@ -145,17 +158,30 @@ export const verifyAuthentication = async (request, response) => {
     .json({ status: true, message: "Is Authenticated." });
 };
 
+//middleware
+
 export const verifyUser = async (request, response, next) => {
   try {
     const token = request.cookies.token;
-    console.log(token);
     if (!token) {
-      return response.status(400).json({ status: false, message: "No token." });
+      return response
+        .status(401)
+        .json({ status: false, message: "No token provided." });
     }
+
     const decoded = jwt.verify(token, process.env.KEY);
+    request.user = decoded;
+
     next();
   } catch (error) {
-    return response.status(500).json(error);
+    if (error.name === "TokenExpiredError") {
+      return response
+        .status(401)
+        .json({ status: false, message: "Token expired." });
+    }
+    return response
+      .status(401)
+      .json({ status: false, message: "Invalid token." });
   }
 };
 
@@ -193,5 +219,14 @@ export const updateProfileById = async (request, response) => {
       .json({ msg: "User Profile updated Successfully." });
   } catch (error) {
     return response.status(500).json({ error: error.message });
+  }
+};
+
+export const getAllUsers = async (request, response) => {
+  try {
+    let users = await User.find({});
+    return response.status(200).json(users);
+  } catch (error) {
+    return response.status(500).json({ msg: "Error while getting all users." });
   }
 };

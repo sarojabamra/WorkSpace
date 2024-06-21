@@ -3,15 +3,16 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import ChatProvider from "./context/ChatProvider";
 import { UserProvider } from "./context/UserContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <UserProvider>
+  <UserProvider>
+    <ChatProvider>
       <App />
-    </UserProvider>
-  </React.StrictMode>
+    </ChatProvider>
+  </UserProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

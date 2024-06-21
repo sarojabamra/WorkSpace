@@ -34,4 +34,16 @@ export const SERVICE_URLS = {
   getUserById: { url: "/user/details", method: "GET", query: true },
   updateProfile: { url: "/user/update", method: "PUT", query: true },
   uploadFile: { url: "/file/upload", method: "POST" },
+  getAllUsers: { url: "/users", method: "GET" },
+  //chats
+  accessChat: { url: "/chat", method: "POST" },
+  fetchChats: { url: "/chat/fetch", method: "GET" },
+  createTeam: { url: "/team", method: "POST" },
+  renameTeam: { url: "/team/rename", method: "PUT" },
+  removeFromTeam: { url: "/team/remove", method: "PUT" },
+  addToTeam: { url: "/team/add", method: "PUT" },
+
+  //message
+  sendMessage: { url: "/message/send", method: "POST" },
+  getAllMessages: { url: "/message", method: "GET", query: true },
 };

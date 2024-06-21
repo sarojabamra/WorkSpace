@@ -56,7 +56,7 @@ const ForgotPassword = () => {
             <button className="fillbtn" onClick={(e) => forgotPass(e)}>
               Send Recovery Mail
             </button>
-            <div className="message-container">
+            <div className="erorr-container">
               {message && <p className="error">{message}</p>}
             </div>
           </form>

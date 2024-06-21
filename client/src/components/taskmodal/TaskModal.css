@@ -1,0 +1,244 @@
+.task-container {
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.task-container .box {
+  background-color: #fff;
+  width: 450px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+}
+
+.task-container .add-task {
+  display: flex;
+  width: 100%;
+  gap: 5px;
+
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.task-container .col2 {
+  display: flex;
+  align-items: center;
+}
+
+.task-container .intro {
+  margin-top: 15px !important;
+  margin-bottom: 15px !important;
+}
+
+.task-container .input-field {
+  background-color: #f3f4f8;
+  display: flex;
+  gap: 5px;
+  border-radius: 2px;
+  padding: 10px;
+}
+
+.task-container input {
+  background-color: transparent;
+  outline: none;
+  width: 100%;
+  border: none;
+}
+
+.task-container .add-btn {
+  background-color: #101223;
+  outline: none;
+  color: #fff;
+  height: 50px;
+  font-size: 16px;
+  margin-top: 10px;
+  border: none;
+  margin-bottom: 20px;
+  border-radius: 2px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.task-container .task-item {
+  background-color: #f3f4f8;
+  margin-top: 5px;
+  padding: 20px 25px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task-container .task-item h4 {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+.task-container .task-item p {
+  margin-top: 0px;
+  margin-bottom: 0;
+  padding: 0;
+  font-size: 14px;
+  color: #777986;
+}
+
+.task-container .completed-task-item h4 {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+.task-container .completed-task-item p {
+  margin-top: 0px;
+  margin-bottom: 0;
+  padding: 0;
+  font-size: 14px;
+  color: #777986;
+}
+
+.task-container .title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.task-container h2 {
+  background-color: #d2d4da;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 14px 70px;
+  border-radius: 2px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.task-container .active {
+  background-color: #101223 !important;
+  color: #fff;
+}
+
+.task-container .btnns {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.task-container a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.task-container .btnns button {
+  padding: 15px 42px;
+  cursor: pointer;
+  border: none;
+
+  padding: 15px 36px;
+  color: #fff;
+  background-color: #d2d4da;
+  border-radius: 2px;
+}
+
+.task-container .task-list {
+  margin-top: 10px;
+}
+
+.task-container .col2 {
+  cursor: pointer;
+  display: flex;
+  gap: 2px;
+  margin-right: 5px;
+}
+
+.task-container .iconn {
+  color: #d2d4da;
+}
+
+.task-container .iconn:hover {
+  color: #101223;
+}
+
+.task-container .col1 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.task-container .iconn {
+  font-size: 24px;
+}
+
+.task-container .imp {
+  font-size: 22px;
+}
+
+.task-container .icon2 {
+  font-size: 22px;
+  color: #101223;
+}
+
+.task-container .completed-task-item {
+  background-color: #f3f4f8;
+  margin-top: 5px;
+  padding: 20px 25px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task-container .completed-task-item .icon:hover {
+  cursor: default;
+  color: inherit;
+}
+
+.task-container .completed-task-item .completed {
+  color: #101223;
+}
+
+.task-container .completed-task-item h4 {
+  text-decoration: line-through;
+}
+
+.task-container .completed-task-item p {
+  text-decoration: line-through;
+}
+
+.task-container ul {
+  margin-top: -8px;
+}
+
+.task-container li {
+  font-size: 15px;
+  color: #777986;
+  margin-left: -15px;
+}
+
+.task-container .instructions {
+  padding: 10px 20px;
+}
+
+.task-container .closediv {
+  width: 100%;
+  height: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.task-container .closediv .close-icon {
+  font-size: 22px;
+  position: absolute;
+  margin-top: -35px;
+  margin-right: -35px !important;
+}

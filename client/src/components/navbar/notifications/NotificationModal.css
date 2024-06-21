@@ -1,0 +1,34 @@
+.notif-container {
+  background-color: #f3f4f8;
+  padding: 15px 20px;
+  border-radius: 2px;
+  margin-top: 5px;
+}
+
+.notif-container:hover {
+  cursor: pointer;
+  background-color: hsl(220, 7%, 84%, 0.5);
+}
+
+.notif-container p {
+  font-size: 14px;
+  color: #5b5d6b;
+}
+
+.notification-icon2 {
+  font-size: 22px;
+}
+
+.notification {
+  display: grid;
+  grid-template-columns: 5fr 0.5fr;
+  gap: 5px;
+}
+
+.notif-div {
+  margin-top: 10px;
+}
+
+.notification span {
+  color: #000;
+}

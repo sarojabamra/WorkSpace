@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../navbar/Navbar";
+
 import { useNavigate, useParams } from "react-router-dom";
 import { API } from "../../service/api";
 import "./Profile.css";
@@ -41,8 +41,6 @@ const Profile = () => {
         data.append("name", file.name);
         data.append("file", file);
 
-        console.log("This is the data being sent,", file);
-
         try {
           const response = await API.uploadFile(data);
           if (response.isSuccess) {
@@ -76,8 +74,6 @@ const Profile = () => {
       updateProfile();
     }
   }, [user]);
-
-  console.log(user.image);
 
   const url = user.image ? user.image : "../../../images/profile-photo.jpg";
 

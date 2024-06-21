@@ -1,0 +1,142 @@
+.chat-list-box {
+  background-color: #f3f4f8;
+  height: 92vh;
+  width: 400px;
+  min-width: 390px;
+  padding-top: 65px;
+  margin-left: 60px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  overflow-y: auto;
+}
+
+.chat-list-box::-webkit-scrollbar {
+  display: none; /* Hides the scrollbar */
+}
+
+.row {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.chat-list button {
+  background-color: hsl(225, 10%, 84%, 0.75);
+  padding: 10px 30px;
+  color: #28213a;
+  border: none;
+  font-size: 14px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 90px;
+  margin-left: 10px;
+  justify-content: space-between;
+}
+
+.chat-list button:hover {
+  background-color: hsl(225, 10%, 84%, 0.9);
+}
+
+.chat-list {
+  padding: 8px 0px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-container {
+  padding: 12px 30px;
+
+  background-color: hsl(225, 10%, 84%, 0);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-container:hover {
+  cursor: pointer;
+  background-color: hsl(225, 10%, 84%, 0.25);
+}
+
+.user-container2 {
+  padding: 10px 30px;
+  background-color: #f3f4f8;
+  display: flex;
+  margin-top: 2.5px;
+  border-radius: 5px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-container2:hover {
+  cursor: pointer;
+  background-color: hsl(225, 10%, 84%, 0.45);
+}
+
+.user-imgdiv {
+  width: 45px;
+  height: 45px;
+  overflow: hidden;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.user-imgdiv img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.addchat-icon {
+  font-size: 22px;
+  color: hsl(257, 27%, 18%);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.addchat-icon:hover {
+  background-color: hsl(228, 7%, 72%, 0.25);
+}
+
+.column1 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 15.5px;
+}
+
+.username {
+  font-size: 14px;
+  color: #9496a1;
+}
+
+.email {
+  font-size: 14px;
+  color: #777986;
+  font-weight: 400;
+}
+
+.hr2 {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: 1px solid hsl(225, 10%, 84%, 0.5);
+}
+
+.hr2.top {
+  margin-top: 10px;
+}

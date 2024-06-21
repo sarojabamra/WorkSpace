@@ -1,0 +1,18 @@
+.home-navbar {
+  z-index: 999;
+}
+
+.home-container {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.home-page {
+  display: flex;
+}
+
+.chat-area {
+  margin-top: 60px;
+  width: 80%;
+  box-sizing: border-box;
+}

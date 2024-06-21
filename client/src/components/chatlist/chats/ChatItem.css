@@ -1,0 +1,29 @@
+.selected {
+  background-color: hsl(225, 10%, 84%, 0.5) !important;
+}
+
+.email span {
+  color: #5b5d6b;
+  font-weight: 500;
+}
+
+.date {
+  font-size: 12px;
+}
+
+.user-container3 {
+  padding: 12px 25px;
+
+  background-color: hsl(225, 10%, 84%, 0);
+  display: grid;
+  gap: 5px;
+  grid-template-columns: 4fr 0.5fr;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-container3:hover {
+  cursor: pointer;
+  background-color: hsl(225, 10%, 84%, 0.25);
+}

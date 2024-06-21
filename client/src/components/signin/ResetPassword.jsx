@@ -85,7 +85,9 @@ const ResetPassword = () => {
             <button className="fillbtn" onClick={(e) => resetPass(e)}>
               Reset Password
             </button>
-            <div>{error && <p className="error">{error}</p>}</div>
+            <div className="error-container">
+              {error && <p className="error">{error}</p>}
+            </div>
           </form>
         </div>
       </div>

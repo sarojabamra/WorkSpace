@@ -150,3 +150,13 @@
   padding: 30px;
   border-radius: 3px;
 }
+
+.messages {
+  height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
