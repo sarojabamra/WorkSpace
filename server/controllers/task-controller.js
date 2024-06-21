@@ -19,9 +19,8 @@ export const addTask = async (req, res) => {
   }
 };
 
-// Function to delete a task by ID
 export const deleteTask = async (req, res) => {
-  const { taskId } = req.body;
+  const { taskId } = req.params;
 
   try {
     const deletedTask = await Task.findByIdAndDelete(taskId);
@@ -38,7 +37,7 @@ export const deleteTask = async (req, res) => {
 
 // Function to mark a task as completed
 export const completeTask = async (req, res) => {
-  const { taskId } = req.body;
+  const { taskId } = req.params;
 
   try {
     const task = await Task.findById(taskId);
@@ -80,13 +79,20 @@ export const getTasks = async (req, res) => {
 
   try {
     let query = { user: userId };
+
+    // Adjust query based on filter
     if (filter === "completed") {
       query.completed = true;
     } else if (filter === "important") {
       query.isImportant = true;
+    } else if (!filter) {
+      // If no filter provided, get all tasks
+      // No additional conditions needed in query for all tasks
     } else {
-      query.completed = false;
+      res.status(400).json({ error: "Invalid filter parameter" });
+      return;
     }
+
     const tasks = await Task.find(query).sort({ createdAt: -1 });
     res.status(200).json(tasks);
   } catch (error) {

@@ -45,11 +45,11 @@ router.get("/file/:filename", getImage);
 router.get("/users", getAllUsers);
 
 //task routes
-router.post("/tasks/add", addTask);
-router.delete("/tasks/delete", deleteTask);
-router.put("/tasks/complete", completeTask);
-router.put("/tasks/markImportant", markImportant);
-router.post("/tasks/get", getTasks);
+router.post("/tasks/add", verifyUser, addTask);
+router.delete("/tasks/delete/:taskId", verifyUser, deleteTask);
+router.put("/tasks/complete/:taskId", verifyUser, completeTask);
+router.put("/tasks/markImportant", verifyUser, markImportant);
+router.get("/tasks/get", getTasks);
 
 //chat/team routes
 router.post("/chat", verifyUser, accessChat);

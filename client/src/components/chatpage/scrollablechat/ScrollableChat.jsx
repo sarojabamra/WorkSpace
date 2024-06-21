@@ -8,9 +8,26 @@ import {
 } from "../../../utils/ChatLogic";
 import { ChatState } from "../../../context/ChatProvider";
 import "./ScrollableChat.css";
+import { API } from "../../../service/api";
 
-const ScrollableChat = ({ messages }) => {
-  const { user, selectedChat } = ChatState();
+const ScrollableChat = ({ messages, fetchAgain, setFetchAgain }) => {
+  const { user, chats, setChats, selectedChat, setSelectedChat } = ChatState();
+
+  const accessChat = async (userId) => {
+    try {
+      const response = await API.accessChat({ userId });
+
+      if (response.isSuccess) {
+        if (!chats.find((c) => c._id === response.data._id)) {
+          setChats([response.data, ...chats]);
+        }
+        setSelectedChat(response.data);
+        setFetchAgain(!fetchAgain);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="scrollable-feed-container">
@@ -48,7 +65,10 @@ const ScrollableChat = ({ messages }) => {
                     <div className={messageWrapperClass} key={message._id}>
                       {firstMessage && !isCurrentUser && (
                         <div className="message-info">
-                          <div className="imgdiv3">
+                          <div
+                            className="imgdiv3"
+                            onClick={() => accessChat(message?.sender._id)}
+                          >
                             <img
                               src={
                                 message?.sender.image

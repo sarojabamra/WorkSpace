@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ChatState } from "../../../context/ChatProvider";
 import "./ChatItem.css";
 import { getSender, getSenderImage } from "../../../utils/ChatLogic";
@@ -42,7 +42,7 @@ const ChatItem = ({ chat }) => {
       <div className="userbg">
         <div
           className={
-            selectedChat === chat
+            selectedChat._id === chat._id
               ? "user-container3 selected"
               : "user-container3"
           }

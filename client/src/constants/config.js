@@ -46,4 +46,12 @@ export const SERVICE_URLS = {
   //message
   sendMessage: { url: "/message/send", method: "POST" },
   getAllMessages: { url: "/message", method: "GET", query: true },
+
+  //tasks
+
+  addTask: { url: "/tasks/addd", method: "GET" },
+  deleteTask: { url: "/tasks/delete", method: "DELETE", query: true },
+  completeTask: { url: "/tasks/complete", method: "PUT", query: true },
+  markImportant: { url: "/tasks/markImportant", method: "PUT" },
+  getTasks: { url: "/tasks/get", method: "GET" },
 };

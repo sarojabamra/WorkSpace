@@ -58,6 +58,8 @@ const ChatPage = ({ fetchAgain, setFetchAgain }) => {
     setModalVisible(true);
   };
 
+  console.log(setModalVisible);
+
   const handleTeamModalOpen = () => {
     setTeamModalVisible(true);
   };
@@ -187,7 +189,7 @@ const ChatPage = ({ fetchAgain, setFetchAgain }) => {
                           )}
                         </div>
                       ) : (
-                        <div>No chats available</div>
+                        <div></div>
                       )}
                     </div>
                   ) : (
@@ -224,7 +226,11 @@ const ChatPage = ({ fetchAgain, setFetchAgain }) => {
             fetchMessages={fetchMessages}
           />
           <div className="messages">
-            <ScrollableChat messages={messages} />
+            <ScrollableChat
+              messages={messages}
+              fetchAgain={fetchAgain}
+              setFetchAgain={setFetchAgain}
+            />
           </div>
           {isTyping ? (
             <Lottie

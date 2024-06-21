@@ -59,6 +59,7 @@
   margin-bottom: 10px;
   margin-top: -15px;
   position: absolute;
+  cursor: pointer;
 }
 
 .imgdiv3 img {
