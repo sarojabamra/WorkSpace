@@ -15,22 +15,19 @@ const ChatItem = ({ chat }) => {
     const updatedDate = new Date(updatedAt);
     const now = new Date();
 
-    // Calculate the difference in milliseconds
     const timeDifference = now - updatedDate;
-    // Convert milliseconds to days
+
     const dayDifference = timeDifference / (1000 * 60 * 60 * 24);
 
     if (dayDifference < 1) {
-      // If less than a day, return the time in HH:MM format without space before AM/PM
       let timeString = updatedDate.toLocaleTimeString([], {
         hour: "2-digit",
         minute: "2-digit",
       });
-      // Remove space before AM/PM
+
       timeString = timeString.replace(" ", "");
       return timeString;
     } else {
-      // If a day or more, return the date in MM-DD format
       const month = ("0" + (updatedDate.getMonth() + 1)).slice(-2);
       const day = ("0" + updatedDate.getDate()).slice(-2);
       return `${month}-${day}`;
@@ -54,7 +51,7 @@ const ChatItem = ({ chat }) => {
             <div>
               <p className="name">
                 {!chat?.isGroupChat
-                  ? getSender(loggedUser, chat.users)
+                  ? getSender(loggedUser, chat?.users)
                   : chat?.chatName}
               </p>
 
