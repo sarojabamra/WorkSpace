@@ -11,10 +11,17 @@
 }
 
 .notif-container p {
-  font-size: 14px;
+  font-size: 13.5px;
   color: #5b5d6b;
 }
 
+.time {
+  font-size: 12px !important;
+}
+
+.notif-title h2 {
+  margin-left: 0 !important;
+}
 .notification-icon2 {
   font-size: 22px;
 }

@@ -35,6 +35,7 @@ export const SERVICE_URLS = {
   updateProfile: { url: "/user/update", method: "PUT", query: true },
   uploadFile: { url: "/file/upload", method: "POST" },
   getAllUsers: { url: "/users", method: "GET" },
+
   //chats
   accessChat: { url: "/chat", method: "POST" },
   fetchChats: { url: "/chat/fetch", method: "GET" },
@@ -46,12 +47,18 @@ export const SERVICE_URLS = {
   //message
   sendMessage: { url: "/message/send", method: "POST" },
   getAllMessages: { url: "/message", method: "GET", query: true },
+  uploadFileInMessage: { url: "/message/upload/file", method: "POST" },
 
   //tasks
-
-  addTask: { url: "/tasks/addd", method: "GET" },
+  addTask: { url: "/tasks/add", method: "POST" },
   deleteTask: { url: "/tasks/delete", method: "DELETE", query: true },
   completeTask: { url: "/tasks/complete", method: "PUT", query: true },
   markImportant: { url: "/tasks/markImportant", method: "PUT" },
-  getTasks: { url: "/tasks/get", method: "GET" },
+  getTasks: { url: "/tasks/getByFilter", method: "POST" },
+
+  //notes
+  addNote: { url: "/notes/add", method: "POST" },
+  getAllNotes: { url: "/notes/get", method: "GET", query: true },
+  markAsImportant: { url: "/notes/markImportant", method: "PUT", query: true },
+  deleteNote: { url: "/notes/delete", method: "DELETE", query: true },
 };

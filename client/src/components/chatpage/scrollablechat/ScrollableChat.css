@@ -37,6 +37,7 @@
   display: flex;
   align-items: center;
   position: relative;
+  justify-content: center;
 }
 
 .sender-name {
@@ -73,6 +74,7 @@
 .receiver {
   border-radius: 10px;
   padding: 10px 15px;
+  box-sizing: border-box;
   max-width: 75%;
   font-size: 15px;
   word-wrap: break-word;
@@ -80,6 +82,76 @@
 
 .sender {
   background-color: #f3f4f8;
+}
+
+.sender .file {
+  color: #000;
+  background-color: hsl(225, 10%, 84%, 0.4);
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 14px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  width: 100%;
+  transform: translate(-10px, -6px);
+}
+
+.sender .file:hover {
+  background-color: hsl(225, 10%, 84%, 0.6);
+}
+
+.file span {
+  color: #b3b5bd;
+  font-weight: 400;
+}
+
+.file-message {
+  margin-top: -5px;
+}
+
+.filename {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+
+.receiver .file {
+  color: #fff;
+  background-color: hsl(225, 10%, 84%, 0.2);
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 14px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  width: 100%;
+  transform: translate(-10px, -6px);
+}
+
+.receiver .file:hover {
+  background-color: hsl(225, 10%, 84%, 0.3);
+}
+
+.file .name {
+  font-size: 14.5px;
+}
+
+.file .email {
+  font-size: 13px;
+}
+
+.receiver .file .email {
+  font-size: 13px;
+  color: #f3f4f8;
+}
+
+.download-icon {
+  font-size: 19px;
 }
 
 .receiver {

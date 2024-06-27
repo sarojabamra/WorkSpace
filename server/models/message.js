@@ -14,6 +14,11 @@ const messageSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Chat",
     },
+    file: {
+      fileName: String,
+      filePath: String,
+    },
+    poll: { type: mongoose.Schema.Types.ObjectId, ref: "Poll" },
   },
   {
     timestamps: true,

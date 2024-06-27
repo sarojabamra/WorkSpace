@@ -16,7 +16,7 @@ export const getSenderUsername = (loggedUser, users) => {
 
 export const getSenderImage = (loggedUser, users) => {
   if (users && users.length > 1) {
-    return users[0]._id === loggedUser._id ? users[1].image : users[0].image;
+    return users[0]._id === loggedUser._id ? users[1]?.image : users[0]?.image;
   }
   return null;
 };

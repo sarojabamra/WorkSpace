@@ -9,6 +9,9 @@ import {
 import { ChatState } from "../../../context/ChatProvider";
 import "./ScrollableChat.css";
 import { API } from "../../../service/api";
+import { Link } from "react-router-dom";
+import { PiDownloadSimpleBold } from "react-icons/pi";
+import { FaFileAlt } from "react-icons/fa";
 
 const ScrollableChat = ({ messages, fetchAgain, setFetchAgain }) => {
   const { user, chats, setChats, selectedChat, setSelectedChat } = ChatState();
@@ -27,6 +30,11 @@ const ScrollableChat = ({ messages, fetchAgain, setFetchAgain }) => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const getFileExtension = (filename) => {
+    const parts = filename.split(".");
+    return parts.length > 1 ? parts[parts.length - 1] : "";
   };
 
   return (
@@ -83,6 +91,7 @@ const ScrollableChat = ({ messages, fetchAgain, setFetchAgain }) => {
                           </span>
                         </div>
                       )}
+
                       <span
                         className={
                           message?.sender._id === user._id
@@ -93,7 +102,25 @@ const ScrollableChat = ({ messages, fetchAgain, setFetchAgain }) => {
                           marginTop: marginTop,
                         }}
                       >
-                        {message?.content}
+                        {message?.file ? (
+                          <div>
+                            <div className="file">
+                              <div className="filename">
+                                <p className="name">{message.file.fileName}</p>
+                                <p className="email">
+                                  .{getFileExtension(message.file.fileName)}{" "}
+                                  file <span>• Download</span>
+                                </p>
+                              </div>
+                              <Link to={message.file.filePath}>
+                                <PiDownloadSimpleBold className="download-icon" />
+                              </Link>
+                            </div>
+                            <p className="file-message">{message.content}</p>
+                          </div>
+                        ) : (
+                          <div>{message?.content}</div>
+                        )}
                       </span>
                     </div>
                   );

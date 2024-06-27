@@ -42,7 +42,7 @@ const ChatItem = ({ chat }) => {
       <div className="userbg">
         <div
           className={
-            selectedChat._id === chat._id
+            selectedChat?._id === chat?._id
               ? "user-container3 selected"
               : "user-container3"
           }

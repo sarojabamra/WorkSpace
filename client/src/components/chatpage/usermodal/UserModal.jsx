@@ -30,7 +30,8 @@ const UserModal = ({ visible, onClose, selectedChat }) => {
               <IoClose className="close-icon2" onClick={onClose} />
             </div>
             <div className="btns">
-              <button className="active">Profile Information</button>
+              <button className="active">Profile</button>
+              <button className="inactive">Assign Task</button>
             </div>
             <div className="profile-content">
               <div className="imgdiv">

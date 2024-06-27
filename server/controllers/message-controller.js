@@ -10,10 +10,21 @@ export const sendMessage = asyncHandler(async (request, response) => {
     console.log("Invalid data passed as request.");
   }
 
+  let attachedFile = null;
+  console.log(request.body.file);
+
+  if (request.body.file) {
+    attachedFile = {
+      fileName: request.body.file.fileName,
+      filePath: request.body.file.filePath,
+    };
+  }
+
   var newMessage = {
     sender: request.user._id,
     content: content,
     chat: chatId,
+    file: attachedFile,
   };
   try {
     var message = await Message.create(newMessage);

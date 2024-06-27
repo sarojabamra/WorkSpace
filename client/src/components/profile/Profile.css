@@ -83,7 +83,7 @@
   gap: 5px;
 }
 
-label {
+.profile-picture {
   width: 100%;
   cursor: pointer;
   z-index: 99;

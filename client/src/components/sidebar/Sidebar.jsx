@@ -10,18 +10,26 @@ import { FaNoteSticky } from "react-icons/fa6";
 import { useUser } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import TaskModal from "../taskmodal/TaskModal";
+import NotesModal from "../notesmodal/NotesModal";
 
 const Sidebar = ({ isUserSearching }) => {
   const [activeIcon, setActiveIcon] = useState("chat");
   const { user } = useUser();
   const [modalVisible, setModalVisible] = useState(false);
   const navigate = useNavigate();
+  const [notesVisible, setNotesVisible] = useState(false);
+
   const handleModalOpen = () => {
     setModalVisible(true);
   };
 
   const handleModalClose = () => {
     setModalVisible(false);
+    setActiveIcon("chat");
+  };
+
+  const handleNotesModalClose = () => {
+    setNotesVisible(false);
     setActiveIcon("chat");
   };
 
@@ -34,7 +42,12 @@ const Sidebar = ({ isUserSearching }) => {
     toggleState("task");
   };
 
-  const url = user.image ? user.image : "../../../images/profile-photo.jpg";
+  const openNotesModal = () => {
+    setNotesVisible(true);
+    toggleState("notes");
+  };
+
+  const url = user?.image ? user.image : "../../../images/profile-photo.jpg";
 
   return (
     <div className="sidebar">
@@ -64,7 +77,7 @@ const Sidebar = ({ isUserSearching }) => {
           className={`notes-icon icon ${
             activeIcon === "notes" ? "active-icon" : ""
           }`}
-          onClick={() => toggleState("notes")}
+          onClick={() => openNotesModal()}
         />
 
         <div className="hr" />
@@ -72,6 +85,7 @@ const Sidebar = ({ isUserSearching }) => {
           <img src={url} alt="Profile Photo" />
         </div>
       </div>
+      <NotesModal visible={notesVisible} onClose={handleNotesModalClose} />
       <TaskModal visible={modalVisible} onClose={handleModalClose} />
     </div>
   );

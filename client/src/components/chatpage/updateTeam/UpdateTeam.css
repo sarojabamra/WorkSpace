@@ -14,7 +14,7 @@
 .update-team .modal-content {
   background-color: #fff;
   padding: 40px;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   max-width: 400px;
   width: 100%;
@@ -47,6 +47,8 @@
 .update-team h2 {
   margin-top: 0;
   font-size: 24px;
+  margin-left: 80px;
+  font-weight: 800;
 }
 
 .search-icon {

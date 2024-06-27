@@ -4,6 +4,7 @@ import "./NotificationModal.css";
 import { getSender } from "../../../utils/ChatLogic";
 import { ChatState } from "../../../context/ChatProvider";
 import { addElipses } from "../../../utils/common-utils";
+import { FaCircle } from "react-icons/fa";
 
 const NotificationModal = ({
   visible,
@@ -48,7 +49,7 @@ const NotificationModal = ({
             <div className="closediv">
               <IoClose className="close-icon" onClick={onClose} />
             </div>
-            <div className="create-title">
+            <div className="notif-title">
               <h2>Your Notifications!</h2>
             </div>
             <p className="email">
@@ -84,7 +85,9 @@ const NotificationModal = ({
                           )}
                         </p>
                       </div>
-                      <p>{formatUpdatedAt(notif?.updatedAt)}</p>
+                      <p className="time">
+                        {formatUpdatedAt(notif?.updatedAt)}
+                      </p>
                     </div>
                   ) : (
                     <div className="notification">
@@ -100,7 +103,9 @@ const NotificationModal = ({
                           )}
                         </p>
                       </div>
-                      <p>{formatUpdatedAt(notif?.updatedAt)}</p>
+                      <p className="time">
+                        {formatUpdatedAt(notif?.updatedAt)}
+                      </p>
                     </div>
                   )}
                 </div>

@@ -12,7 +12,7 @@ export const addTask = async (req, res) => {
     });
 
     await newTask.save();
-    res.status(201).json(newTask);
+    res.status(200).json(newTask);
   } catch (error) {
     console.error("Error adding task:", error);
     res.status(500).json({ error: "Failed to add task" });
@@ -64,7 +64,7 @@ export const markImportant = async (req, res) => {
       res.status(404).json({ error: "Task not found" });
       return;
     }
-    task.isImportant = isImportant;
+    task.isImportant = !task.isImportant;
     await task.save();
     res.status(200).json(task);
   } catch (error) {
@@ -77,6 +77,16 @@ export const markImportant = async (req, res) => {
 export const getTasks = async (req, res) => {
   const { userId, filter } = req.body;
 
+  // Check if userId or filter is missing
+  if (
+    !userId ||
+    (filter !== "completed" && filter !== "important" && filter !== "")
+  ) {
+    return res
+      .status(400)
+      .json({ error: "Invalid userId or filter parameter" });
+  }
+
   try {
     let query = { user: userId };
 
@@ -85,12 +95,9 @@ export const getTasks = async (req, res) => {
       query.completed = true;
     } else if (filter === "important") {
       query.isImportant = true;
-    } else if (!filter) {
-      // If no filter provided, get all tasks
-      // No additional conditions needed in query for all tasks
-    } else {
-      res.status(400).json({ error: "Invalid filter parameter" });
-      return;
+      query.completed = false;
+    } else if (filter === "") {
+      query.completed = false;
     }
 
     const tasks = await Task.find(query).sort({ createdAt: -1 });

@@ -8,96 +8,98 @@ import { MdOutlineTaskAlt } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
+import { API } from "../../service/api";
+import { ChatState } from "../../context/ChatProvider";
 
 const TaskModal = ({ visible, onClose }) => {
   const [activePage, setActivePage] = useState("unfinished");
   const [todoList, setTodoList] = useState([]);
   const [taskTitle, setTaskTitle] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
-  const [completedTasks, setCompletedTasks] = useState([]);
-  //const [importantTasks, setImportantTasks] = useState([]);
+  const { user: loggedUser } = ChatState();
+  const [filter, setFilter] = useState("");
+  const [fetchAgain, setFetchAgain] = useState(false);
 
   const toggleState = (page) => {
     setActivePage(page);
+    setFilter(page);
+    if (page === "unfinished") {
+      setFilter("");
+    }
   };
 
-  const addTask = () => {
-    const newTaskItem = {
-      title: taskTitle,
-      description: taskDescription,
-      isImportant: false,
-    };
+  //addTask working
+  const addTask = async () => {
+    if (!taskTitle || !taskDescription) {
+      return;
+    }
+    try {
+      const response = await API.addTask({
+        userId: loggedUser._id,
+        title: taskTitle,
+        description: taskDescription,
+      });
 
-    setTodoList((prevTodoList) => {
-      const updatedTodoList = [...prevTodoList, newTaskItem];
-      localStorage.setItem("taskList", JSON.stringify(updatedTodoList));
-      return updatedTodoList;
-    });
+      if (response.isSuccess) {
+        setTaskTitle("");
+        setTaskDescription("");
+        setFetchAgain(!fetchAgain);
+      }
+    } catch (error) {
+      console.log("error");
+    }
+  };
 
-    setTaskTitle("");
-    setTaskDescription("");
+  const fetchTasks = async () => {
+    try {
+      const response = await API.getTasks({
+        userId: loggedUser._id,
+        filter: filter,
+      });
+      if (response.isSuccess) {
+        setTodoList(response.data);
+      }
+    } catch (error) {}
+  };
+
+  //deleteTask working
+  const deleteTask = async (task) => {
+    try {
+      const response = await API.deleteTask(task);
+      if (response.isSuccess) {
+        console.log("Task deleted successfully.");
+        setFetchAgain(!fetchAgain);
+      }
+    } catch (error) {}
   };
 
   useEffect(() => {
-    const savedList = JSON.parse(localStorage.getItem("taskList"));
-    if (savedList) {
-      setTodoList(savedList);
-    }
+    fetchTasks();
+  }, [filter, fetchAgain, visible]);
 
-    const savedCompletedTasks = JSON.parse(
-      localStorage.getItem("completedTasks")
-    );
-    if (savedCompletedTasks) {
-      setCompletedTasks(savedCompletedTasks);
-    }
-  }, []);
+  const completeTask = async (task) => {
+    try {
+      const response = await API.completeTask(task);
 
-  const deleteTask = (index) => {
-    let newTodoList = [...todoList];
-    newTodoList.splice(index, 1);
-
-    localStorage.setItem("taskList", JSON.stringify(newTodoList));
-    setTodoList(newTodoList);
+      if (response.isSuccess) {
+        console.log("Task set to completed successfully.");
+        setFetchAgain(!fetchAgain);
+      }
+    } catch (error) {}
   };
 
-  const deleteCompletedTask = (index) => {
-    const newCompletedList = [...completedTasks];
-    newCompletedList.splice(index, 1);
-
-    // Update state and localStorage for completedTasks
-    setCompletedTasks(newCompletedList);
-    localStorage.setItem("completedTasks", JSON.stringify(newCompletedList));
-  };
-
-  const completeTask = (index) => {
-    // Get the completed task
-    const completedTask = todoList[index];
-
-    // Update the completed tasks array
-    setCompletedTasks((prevCompletedTasks) => {
-      const updatedCompletedTasks = [...prevCompletedTasks, completedTask];
-      localStorage.setItem(
-        "completedTasks",
-        JSON.stringify(updatedCompletedTasks)
-      );
-      return updatedCompletedTasks;
-    });
-
-    // Update the todo list by removing the completed task
-    setTodoList((prevTodoList) => {
-      const updatedTodoList = [...prevTodoList];
-      updatedTodoList.splice(index, 1); // Remove the task at the specified index
-      localStorage.setItem("taskList", JSON.stringify(updatedTodoList));
-      return updatedTodoList;
-    });
-  };
-
-  const markImportant = (index) => {
-    let updatedTodoList = [...todoList];
-    updatedTodoList[index].isImportant = !updatedTodoList[index].isImportant;
-
-    localStorage.setItem("taskList", JSON.stringify(updatedTodoList));
-    setTodoList(updatedTodoList);
+  const markImportant = async (task) => {
+    console.log(task);
+    try {
+      const response = await API.markImportant({
+        taskId: task._id,
+        isImportant: task.isImportant,
+      });
+      if (response.isSuccess) {
+        console.log("markImportant function called successfully.");
+        setFetchAgain(!fetchAgain);
+      }
+    } catch (error) {}
   };
   if (!visible) return null;
   return (
@@ -160,14 +162,14 @@ const TaskModal = ({ visible, onClose }) => {
             </div>
             <div className="task-list">
               {activePage === "unfinished" &&
-                todoList.map((todo, index) => {
+                todoList.map((todo) => {
                   return (
-                    <div className="task-item" key={index}>
+                    <div className="task-item" key={todo._id}>
                       <div className="col1">
                         <div>
                           <MdOutlineTaskAlt
                             className="completed iconn"
-                            onClick={() => completeTask(index)}
+                            onClick={() => completeTask(todo)}
                           />
                         </div>
                         <div>
@@ -180,12 +182,12 @@ const TaskModal = ({ visible, onClose }) => {
                           className={`imp ${
                             todo.isImportant ? "icon2" : "iconn"
                           }`}
-                          onClick={() => markImportant(index)}
+                          onClick={() => markImportant(todo)}
                         />
 
                         <MdDelete
                           className="dlt iconn"
-                          onClick={() => deleteTask(index)}
+                          onClick={() => deleteTask(todo)}
                         />
                       </div>
                     </div>
@@ -194,14 +196,14 @@ const TaskModal = ({ visible, onClose }) => {
               {activePage === "important" &&
                 todoList
                   .filter((task) => task.isImportant)
-                  .map((todo, index) => {
+                  .map((todo) => {
                     return (
-                      <div className="task-item" key={index}>
+                      <div className="task-item" key={todo._id}>
                         <div className="col1">
                           <div>
                             <MdOutlineTaskAlt
                               className="completed iconn"
-                              onClick={() => completeTask(index)}
+                              onClick={() => completeTask(todo)}
                             />
                           </div>
                           <div>
@@ -212,23 +214,23 @@ const TaskModal = ({ visible, onClose }) => {
                         <div className="col2">
                           <FaStar
                             className="imp icon2"
-                            onClick={() => markImportant(index)}
+                            onClick={() => markImportant(todo)}
                           />
                           <MdDelete
                             className="dlt iconn"
-                            onClick={() => deleteTask(index)}
+                            onClick={() => deleteTask(todo)}
                           />
                         </div>
                       </div>
                     );
                   })}
               {activePage === "completed" &&
-                completedTasks
+                todoList
                   .slice()
                   .reverse()
-                  .map((todo, index) => {
+                  .map((todo) => {
                     return (
-                      <div className="completed-task-item" key={index}>
+                      <div className="completed-task-item" key={todo._id}>
                         <div className="col1">
                           <div>
                             <MdOutlineTaskAlt className="completed iconn" />
@@ -241,7 +243,7 @@ const TaskModal = ({ visible, onClose }) => {
                         <div className="col2">
                           <MdDelete
                             className="dlt iconn"
-                            onClick={() => deleteCompletedTask(index)}
+                            onClick={() => deleteTask(todo)}
                           />
                         </div>
                       </div>

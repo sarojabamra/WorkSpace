@@ -40,6 +40,7 @@ const ChatPage = ({ fetchAgain, setFetchAgain }) => {
   const [socketConnected, setSocketConnected] = useState(false);
   const [typing, setTyping] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
+  const [file, setFile] = useState(null);
 
   const defaultOptions = {
     loop: true,
@@ -116,25 +117,63 @@ const ChatPage = ({ fetchAgain, setFetchAgain }) => {
     });
   });
 
+  const handleKeyPress = async (e) => {
+    if (e.key === "Enter") {
+      await sendMessage(e);
+    }
+  };
+
+  const handleButtonClick = async (e) => {
+    await sendMessage(e);
+  };
+
   const sendMessage = async (e) => {
-    if (e.key === "Enter" && newMessage) {
+    if ((e.type === "click" || e.key === "Enter") && (newMessage || file)) {
       socket.emit("stop typing", selectedChat._id);
       setNewMessage("");
+
+      let fileMessage = null;
+
+      if (file) {
+        console.log("The file send to payload.", file); // file exists
+        try {
+          const formData = new FormData();
+          formData.append("file", file);
+
+          const fileResponse = await API.uploadFileInMessage(formData);
+          console.log("File response: ", fileResponse.data);
+          if (fileResponse.isSuccess) {
+            fileMessage = {
+              fileName: file.name,
+              filePath: fileResponse.data,
+            };
+            console.log("Uploaded file successfully.");
+          } else {
+            console.log("Error uploading file:", fileResponse.error);
+          }
+        } catch (error) {
+          console.log("Error uploading file:", error);
+        }
+      }
+
       try {
         const response = await API.sendMessage({
           content: newMessage,
           chatId: selectedChat._id,
+          file: fileMessage,
         });
         if (response.isSuccess) {
           console.log(response.data);
           socket.emit("new message", response.data);
           setMessages([...messages, response.data]);
           setFetchAgain(!fetchAgain);
+          setFile(null);
         }
-      } catch (error) {}
+      } catch (error) {
+        console.log("Error sending message:", error);
+      }
     }
   };
-
   const typingHandler = (e) => {
     setNewMessage(e.target.value);
 
@@ -155,6 +194,11 @@ const ChatPage = ({ fetchAgain, setFetchAgain }) => {
         setTyping(false);
       }
     }, timerLength);
+  };
+
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0];
+    setFile(file);
   };
 
   const url = getSenderImage(loggedUser, selectedChat?.users)
@@ -242,22 +286,44 @@ const ChatPage = ({ fetchAgain, setFetchAgain }) => {
           ) : (
             <></>
           )}
+          {file ? (
+            <div className="file-selected">
+              <span>File selected: </span>
+              {file.name}
+            </div>
+          ) : (
+            ""
+          )}
           <div className="message-input">
             <div className="message-container">
               <div className="input">
-                <RiAttachment2 className="msgbar-icon" />
+                <input
+                  type="file"
+                  className="file"
+                  id="fileInput"
+                  style={{ display: "none" }}
+                  onChange={handleFileChange}
+                />
+                <label htmlFor="fileInput">
+                  <RiAttachment2
+                    className={`msgbar-icon ${
+                      file ? "file-exists" : "no-file"
+                    }`}
+                  />
+                </label>
+
                 <div className="input-container2">
                   <input
                     placeholder="Enter your message here..."
                     onChange={typingHandler}
                     value={newMessage}
-                    onKeyDown={sendMessage}
+                    onKeyDown={handleKeyPress}
                   />
                   <BsEmojiSmile className="msgbar-icon-emoji" />
                 </div>
               </div>
               <div className="send">
-                <button className="send-btn">
+                <button className="send-btn" onClick={handleButtonClick}>
                   <IoIosSend className="msgbar-icon" />
                 </button>
               </div>

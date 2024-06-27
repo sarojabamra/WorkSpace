@@ -31,3 +31,11 @@ export const getImage = async (request, response) => {
     return response.status(500).json({ msg: error.message });
   }
 };
+
+export const uploadFile = (request, response) => {
+  console.log(request.body);
+
+  const fileUrl = `${url}/file/${request.file.filename}`;
+
+  response.status(200).json(fileUrl);
+};

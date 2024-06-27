@@ -1,4 +1,4 @@
-.task-container {
+.notes-container {
   background: rgba(0, 0, 0, 0.5);
   width: 100%;
   top: 0;
@@ -10,7 +10,7 @@
   justify-content: center;
 }
 
-.task-container .box {
+.notes-container .box {
   background-color: #fff;
   width: 500px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -20,7 +20,7 @@
   padding: 50px;
 }
 
-.task-container .add-task {
+.notes-container .add-task {
   display: flex;
   width: 100%;
   gap: 5px;
@@ -29,17 +29,17 @@
   flex-direction: column;
 }
 
-.task-container .col2 {
+.notes-container .col2 {
   display: flex;
   align-items: center;
 }
 
-.task-container {
+.notes-container .intro {
   margin-top: 15px !important;
-  margin-bottom: 15px !important;
+  margin-bottom: 10px !important;
 }
 
-.task-container .input-field {
+.notes-container .input-field {
   background-color: #f3f4f8;
   display: flex;
   gap: 5px;
@@ -47,14 +47,14 @@
   padding: 10px;
 }
 
-.task-container input {
+.notes-container input {
   background-color: transparent;
   outline: none;
   width: 100%;
   border: none;
 }
 
-.task-container .add-btn {
+.notes-container .add-btn {
   background-color: #101223;
   outline: none;
   color: #fff;
@@ -68,7 +68,7 @@
   cursor: pointer;
 }
 
-.task-container .task-item {
+.notes-container .task-item {
   background-color: #f3f4f8;
   margin-top: 5px;
   padding: 18px 20px;
@@ -79,12 +79,12 @@
   justify-content: space-between;
 }
 
-.task-container .task-item h4 {
+.notes-containerr .task-item h4 {
   margin: 0;
   padding: 0;
 }
 
-.task-container .task-item p {
+.notes-container .task-item p {
   margin-top: 0px;
   margin-bottom: 0;
   padding: 0;
@@ -92,132 +92,86 @@
   color: #777986;
 }
 
-.task-container .completed-task-item h4 {
-  margin: 0;
-  padding: 0;
-  font-size: 16px;
-}
-
-.task-container .completed-task-item p {
-  margin-top: 0px;
-  margin-bottom: 0;
-  padding: 0;
-  font-size: 14px;
-  color: #777986;
-}
-
-.task-container .title {
+.notes-container .title {
   display: flex;
   justify-content: space-between;
 }
 
-.task-container h2 {
+.notes-container h2 {
   background-color: #d2d4da;
   font-size: 16px;
   font-weight: 400;
-  padding: 14px 82px;
+  padding: 14px 86px;
   border-radius: 2px;
   color: #fff;
   cursor: pointer;
 }
 
-.task-container .active {
+.notes-container .active {
   background-color: #101223 !important;
   color: #fff;
 }
 
-.task-container .btnns {
-  display: flex;
-  gap: 8px;
-  justify-content: space-between;
-}
-.task-container .intro {
-  margin-top: 15px !important;
-  margin-bottom: 10px !important;
+.notes-container textarea {
+  height: 150px;
+  width: 100%;
+  border: none;
+  outline: none;
+  resize: none;
+  background-color: transparent;
 }
 
-.task-container a {
+.notes-container a {
   color: inherit;
   text-decoration: none;
 }
 
-.task-container .btnns button {
-  padding: 15px 42px;
-  cursor: pointer;
-  border: none;
-
-  padding: 15px 45px;
-  color: #fff;
-  background-color: #d2d4da;
-  border-radius: 2px;
-}
-
-.task-container .task-list {
+.notes-container .task-list {
   margin-top: 10px;
-  max-height: 275px;
+  max-height: 375px;
   overflow-y: scroll;
 }
 
-.task-container .task-list::-webkit-scrollbar {
+.notes-container .task-list::-webkit-scrollbar {
   display: none;
 }
 
-.task-container .col2 {
+.notes-container .col2 {
   cursor: pointer;
   display: flex;
   gap: 2px;
   margin-right: 5px;
 }
 
-.task-container .iconn {
+.notes-container .iconn {
   color: #d2d4da;
 }
 
-.task-container .iconn:hover {
+.notes-container .iconn:hover {
   color: #101223;
 }
 
-.task-container .col1 {
+.notes-container .col1 {
   display: flex;
   flex-direction: row;
   gap: 10px;
   align-items: center;
 }
 
-.task-container .iconn {
+.notes-container .iconn {
   font-size: 24px;
 }
 
-.task-container .imp {
+.notes-container .imp {
   font-size: 22px;
 }
 
-.task-container .icon2 {
+.notes-container.icon2 {
   font-size: 22px;
   color: #101223;
 }
 
-.task-container .completed-task-item {
-  background-color: #f3f4f8;
-  margin-top: 5px;
-  padding: 18px 20px;
-  border-radius: 5px;
-  gap: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.task-container .completed-task-item .icon:hover {
-  cursor: default;
-  color: inherit;
-}
-
-.task-container .completed-task-item .completed {
-  color: #101223;
-}
-
-.task-container .closediv {
+.notes-container .closediv {
   width: 100%;
   height: 15px;
   display: flex;
@@ -225,7 +179,7 @@
   justify-content: flex-end;
 }
 
-.task-container .closediv .close-icon {
+.notes-container .closediv .close-icon {
   font-size: 22px;
   position: absolute;
   margin-top: -35px;
