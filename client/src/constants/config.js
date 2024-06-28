@@ -61,4 +61,8 @@ export const SERVICE_URLS = {
   getAllNotes: { url: "/notes/get", method: "GET", query: true },
   markAsImportant: { url: "/notes/markImportant", method: "PUT", query: true },
   deleteNote: { url: "/notes/delete", method: "DELETE", query: true },
+
+  //poll
+  getPollById: { url: "/poll/get", method: "POST" },
+  votePoll: { url: "/poll/vote", method: "POST" },
 };

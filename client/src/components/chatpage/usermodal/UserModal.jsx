@@ -60,6 +60,9 @@ const UserModal = ({ visible, onClose, selectedChat }) => {
                   {getSenderProfession(loggedUser, selectedChat?.users)}
                 </p>
               </div>
+              <p className="error">
+                Click on the 'Assign Task' button to assign a task.
+              </p>
             </div>
           </div>
         </div>

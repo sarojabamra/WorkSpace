@@ -111,10 +111,20 @@
   margin-top: 3px !important;
 }
 
-.msgbar-icon-emoji {
-  font-size: 22px;
-  padding: 10px;
+.msg-icons {
+  display: flex;
+}
+
+.msgbar-icon-poll {
+  font-size: 24px;
+  padding: 8px;
+  color: #9496a1;
   border-radius: 10px;
+  cursor: pointer;
+}
+
+.msgbar-icon-poll:hover {
+  color: #101223;
 }
 
 .msgbar-icon:hover {
@@ -122,6 +132,15 @@
 }
 
 .msgbar-icon.no-file:hover {
+  background-color: hsl(225, 10%, 84%, 0.5);
+}
+
+.poll-icon {
+  font-size: 25px;
+  padding: 8px !important;
+}
+
+.poll-icon:hover {
   background-color: hsl(225, 10%, 84%, 0.5);
 }
 

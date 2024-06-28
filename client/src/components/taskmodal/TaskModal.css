@@ -1,8 +1,9 @@
 .task-container {
   background: rgba(0, 0, 0, 0.5);
   width: 100%;
-  top: 0;
-  left: 0;
+
+  top: 0 !important;
+  left: 0 !important;
   height: 100vh;
   position: fixed;
   display: flex;
@@ -16,6 +17,7 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
   display: flex;
+
   flex-direction: column;
   padding: 50px;
 }
@@ -32,11 +34,6 @@
 .task-container .col2 {
   display: flex;
   align-items: center;
-}
-
-.task-container {
-  margin-top: 15px !important;
-  margin-bottom: 15px !important;
 }
 
 .task-container .input-field {
@@ -58,20 +55,31 @@
   background-color: #101223;
   outline: none;
   color: #fff;
-  height: 50px;
+
   font-size: 16px;
   margin-top: 10px;
   border: none;
   margin-bottom: 20px;
   border-radius: 2px;
-  padding: 10px 20px;
+  padding: 15px 20px;
   cursor: pointer;
 }
 
 .task-container .task-item {
   background-color: #f3f4f8;
   margin-top: 5px;
-  padding: 18px 20px;
+  padding: 18px 15px;
+  border-radius: 5px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task-container .task-item {
+  background-color: #f3f4f8;
+  margin-top: 5px;
+  padding: 18px 15px;
   border-radius: 5px;
   display: flex;
   gap: 20px;
@@ -115,7 +123,7 @@
   background-color: #d2d4da;
   font-size: 16px;
   font-weight: 400;
-  padding: 14px 82px;
+  padding: 13px 83px;
   border-radius: 2px;
   color: #fff;
   cursor: pointer;
@@ -128,7 +136,7 @@
 
 .task-container .btnns {
   display: flex;
-  gap: 8px;
+  gap: 5px;
   justify-content: space-between;
 }
 .task-container .intro {
@@ -142,11 +150,11 @@
 }
 
 .task-container .btnns button {
-  padding: 15px 42px;
+  padding: 15px 43px;
   cursor: pointer;
   border: none;
 
-  padding: 15px 45px;
+  padding: 13px 45px;
   color: #fff;
   background-color: #d2d4da;
   border-radius: 2px;
@@ -200,7 +208,7 @@
 .task-container .completed-task-item {
   background-color: #f3f4f8;
   margin-top: 5px;
-  padding: 18px 20px;
+  padding: 18px 15px;
   border-radius: 5px;
   gap: 20px;
   display: flex;

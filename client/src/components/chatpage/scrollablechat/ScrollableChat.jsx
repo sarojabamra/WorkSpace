@@ -12,6 +12,7 @@ import { API } from "../../../service/api";
 import { Link } from "react-router-dom";
 import { PiDownloadSimpleBold } from "react-icons/pi";
 import { FaFileAlt } from "react-icons/fa";
+import Poll from "../../poll/Poll";
 
 const ScrollableChat = ({ messages, fetchAgain, setFetchAgain }) => {
   const { user, chats, setChats, selectedChat, setSelectedChat } = ChatState();
@@ -102,7 +103,16 @@ const ScrollableChat = ({ messages, fetchAgain, setFetchAgain }) => {
                           marginTop: marginTop,
                         }}
                       >
-                        {message?.file ? (
+                        {message?.poll ? (
+                          <Poll
+                            pollId={message.poll}
+                            sender={
+                              message?.sender._id === user._id
+                                ? "sender"
+                                : "receiver"
+                            }
+                          />
+                        ) : message?.file ? (
                           <div>
                             <div className="file">
                               <div className="filename">

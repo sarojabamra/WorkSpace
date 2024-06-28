@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const pollOptionSchema = new mongoose.Schema({
   option: String,
@@ -11,6 +11,7 @@ const pollSchema = new mongoose.Schema(
     options: [pollOptionSchema],
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     chat: { type: mongoose.Schema.Types.ObjectId, ref: "Chat" },
+    votedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   },
   { timestamps: true }
 );

@@ -23,6 +23,7 @@ import ScrollableChat from "./scrollablechat/ScrollableChat";
 import io from "socket.io-client";
 import Lottie from "react-lottie";
 import animationData from "../../animations/typing.json";
+import { BiPoll } from "react-icons/bi";
 
 const ENDPOINT = "http://localhost:8000";
 var socket, selectedChatCompare;
@@ -304,14 +305,15 @@ const ChatPage = ({ fetchAgain, setFetchAgain }) => {
                   style={{ display: "none" }}
                   onChange={handleFileChange}
                 />
-                <label htmlFor="fileInput">
-                  <RiAttachment2
-                    className={`msgbar-icon ${
-                      file ? "file-exists" : "no-file"
-                    }`}
-                  />
-                </label>
-
+                <div className="msg-icons">
+                  <label htmlFor="fileInput">
+                    <RiAttachment2
+                      className={`msgbar-icon ${
+                        file ? "file-exists" : "no-file"
+                      }`}
+                    />
+                  </label>
+                </div>
                 <div className="input-container2">
                   <input
                     placeholder="Enter your message here..."
@@ -319,7 +321,7 @@ const ChatPage = ({ fetchAgain, setFetchAgain }) => {
                     value={newMessage}
                     onKeyDown={handleKeyPress}
                   />
-                  <BsEmojiSmile className="msgbar-icon-emoji" />
+                  <BiPoll className="msgbar-icon-poll" />
                 </div>
               </div>
               <div className="send">

@@ -5,9 +5,29 @@
   margin-top: 5px;
 }
 
+.notif-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.notif-title h2 {
+  background-color: #101223;
+  color: #fff;
+  border-radius: 2px;
+  margin-top: 10px !important;
+  padding: 13px 62px;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+}
+
 .notif-container:hover {
   cursor: pointer;
   background-color: hsl(220, 7%, 84%, 0.5);
+}
+
+.notif-intro {
+  margin-top: 15px !important;
 }
 
 .notif-container p {
@@ -34,6 +54,12 @@
 
 .notif-div {
   margin-top: 10px;
+  max-height: 350px;
+  overflow-y: scroll;
+}
+
+.notif-div::-webkit-scrollbar {
+  display: none;
 }
 
 .notification span {

@@ -6,6 +6,7 @@ import { MdDelete, MdOutlineTaskAlt } from "react-icons/md";
 import "./NotesModal.css";
 import { API } from "../../service/api";
 import { ChatState } from "../../context/ChatProvider";
+import { addElipses } from "../../utils/common-utils";
 
 const NotesModal = ({ visible, onClose }) => {
   const [activePage, setActivePage] = useState("create");
@@ -14,6 +15,14 @@ const NotesModal = ({ visible, onClose }) => {
   const [notes, setNotes] = useState([]);
   const [fetchAgain, setFetchAgain] = useState(false);
   const { user: loggedUser } = ChatState();
+  const [expandedNotes, setExpandedNotes] = useState({});
+
+  const toggleExpand = (noteId) => {
+    setExpandedNotes((prevExpanded) => ({
+      ...prevExpanded,
+      [noteId]: !prevExpanded[noteId],
+    }));
+  };
 
   const toggleState = (page) => {
     setActivePage(page);
@@ -129,12 +138,25 @@ const NotesModal = ({ visible, onClose }) => {
             <div className="task-list">
               {activePage === "mynotes" &&
                 notes.map((note) => {
+                  const isExpanded = expandedNotes[note._id] || false;
                   return (
                     <div className="task-item" key={note._id}>
                       <div className="col1">
                         <div>
                           <h4>{note.title}</h4>
-                          <p>{note.description}</p>
+                          <p>
+                            {isExpanded
+                              ? note.description
+                              : addElipses(note.description, 125)}
+                          </p>
+                          {note.description.split(" ").length > 20 && (
+                            <button
+                              className="expand-btn"
+                              onClick={() => toggleExpand(note._id)}
+                            >
+                              {isExpanded ? "Read less" : "Read more"}
+                            </button>
+                          )}
                         </div>
                       </div>
                       <div className="col2">

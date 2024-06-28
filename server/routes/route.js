@@ -39,6 +39,11 @@ import {
   getAllNotes,
   markNote,
 } from "../controllers/notes-controller.js";
+import {
+  createPoll,
+  getPollById,
+  votePoll,
+} from "../controllers/poll-controller.js";
 
 const router = express.Router();
 
@@ -78,7 +83,6 @@ router.post(
 );
 
 //notes routes
-
 router.post("/notes/add", verifyUser, addNote);
 router.get("/notes/get/:userId", verifyUser, getAllNotes);
 router.put("/notes/markImportant/:noteId", verifyUser, markNote);
@@ -87,5 +91,10 @@ router.delete("/notes/delete/:noteId", verifyUser, deleteNote);
 //message routes
 router.post("/message/send", verifyUser, sendMessage);
 router.get("/message/:chatId", verifyUser, allMessages);
+
+//poll routes
+router.post("/poll/create", verifyUser, createPoll);
+router.post("/poll/vote", verifyUser, votePoll);
+router.post("/poll/get", verifyUser, getPollById);
 
 export default router;

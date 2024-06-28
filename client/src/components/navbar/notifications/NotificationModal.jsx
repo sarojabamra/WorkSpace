@@ -51,8 +51,9 @@ const NotificationModal = ({
             </div>
             <div className="notif-title">
               <h2>Your Notifications!</h2>
+              <h2 className="inactive">Mark as read</h2>
             </div>
-            <p className="email">
+            <p className="email notif-intro">
               Don't miss out on important updates and conversations. Click on
               the notification to view your message now.
             </p>
@@ -77,11 +78,11 @@ const NotificationModal = ({
                   {notif?.chat.isGroupChat ? (
                     <div className="notification">
                       <div>
-                        <h4>{addElipses(notif?.content, 20)}</h4>
+                        <h4>{addElipses(notif?.content, 100)}</h4>
                         <p>
                           {addElipses(
                             `You received a new message in ${notif?.chat.chatName}`,
-                            40
+                            50
                           )}
                         </p>
                       </div>
@@ -92,14 +93,14 @@ const NotificationModal = ({
                   ) : (
                     <div className="notification">
                       <div>
-                        <h4>{addElipses(notif?.content, 40)}</h4>
+                        <h4>{addElipses(notif?.content, 100)}</h4>
                         <p className="email">
                           {addElipses(
-                            `You received a new message in ${getSender(
+                            `You received a new message from ${getSender(
                               user,
                               notif?.chat.users
                             )}`,
-                            40
+                            50
                           )}
                         </p>
                       </div>

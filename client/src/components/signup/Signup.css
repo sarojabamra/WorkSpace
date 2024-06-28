@@ -71,7 +71,7 @@ a {
 
 .btns {
   display: flex;
-  gap: 10px;
+  gap: 5px;
   flex-direction: row;
   justify-content: space-between;
 }
@@ -80,7 +80,7 @@ a {
   background-color: #101223;
   color: #fff;
   font-weight: 400;
-  padding: 10px 60px;
+  padding: 10px 60.5px;
   border-radius: 2px;
   font-size: 16px;
 }
